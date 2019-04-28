@@ -1,4 +1,4 @@
-const config = require('config');
+//const config = require('config');
 const oracledb = require('oracledb');
 
 
@@ -12,7 +12,7 @@ const connectOptions = {
     "config": {
         "user": "username",
         "password": "password",
-        "connectString": "CONNECT TO IP /XE",
+        "connectString": "[DATABASE_IP]/XE",
         "poolMax": 44,
         "poolMin": 2,
         "poolIncrement": 5,
@@ -52,6 +52,7 @@ const exec = async (sql, bindParams, options = {}) => {
     try {
 
         if (typeof pool !== "undefined") {
+
             console.log("INFO: Connections open: " + pool.connectionsOpen);
             console.log("INFO: Connections in use: " + pool.connectionsInUse);
         }
@@ -60,7 +61,7 @@ const exec = async (sql, bindParams, options = {}) => {
         try {
             const result = await connection.execute(sql, bindParams, options);
 
-            logger.info(metodName + sql + " " + JSON.stringify(bindParams))
+            logger.info(metodName + sql + " " + JSON.stringify(bindParams));
             return result;
         } catch (e) {
             throw e;
