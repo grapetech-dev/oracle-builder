@@ -48,7 +48,10 @@ const oracleDbRelease = (conn) => {
 
 const exec = async (sql, bindParams, options = {}) => {
     const metodName = "[exec]: ";
-    options.isAutoCommit = false;
+    if (options['autoCommit'] === undefined) {
+        options['autoCommit'] = false;
+    }
+
     try {
 
         if (typeof pool !== "undefined") {
