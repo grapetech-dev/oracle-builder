@@ -1,7 +1,5 @@
 //const config = require('config');
 const oracledb = require('oracledb');
-
-
 const logger = require('../helpers/logger');
 const DatabaseError = require('../exceptions/errors').DatabaseError;
 
@@ -48,8 +46,9 @@ const oracleDbRelease = (conn) => {
 
 const exec = async (sql, bindParams, options = {}) => {
     const metodName = "[exec]: ";
+
     if (options['autoCommit'] === undefined) {
-        options['autoCommit'] = false;
+        options.autoCommit = false;
     }
 
     try {
