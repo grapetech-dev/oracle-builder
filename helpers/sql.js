@@ -118,7 +118,7 @@ module.exports = class SQL {
         if (!value) {
             this._select = ["*"]
         } else {
-            this._select.push(value + ((as !== false) ? this.SPACE + "AS" + this.SPACE + as : ''))
+            this._select.push(value + ((as !== false) ? this.SPACE + 'AS' + this.SPACE + '"' + as + '"' : ''))
         }
 
         return this;
